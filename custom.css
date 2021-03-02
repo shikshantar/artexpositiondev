@@ -1,0 +1,86 @@
+* {
+	transition: all 250ms !important;
+}
+
+.hero {
+	max-width: 100% !important;
+	margin: 0 !important;
+}
+
+.hero-flex {
+	display: flex;
+	flex-direction: column;
+}
+
+.hero-row {
+	flex-grow:1;
+	padding: 2rem;
+	width: 100%;
+	max-height: 80vh;
+	display: flex;
+	justify-content: flex-start;
+	flex-direction: row;
+}
+
+.v-center{
+	position: relative;
+	top: 50%;
+	-webkit-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+
+.slideshow {
+	padding: 15%;
+	transition: background-image 0.5s ease-in-out;
+	-webkit-transition: background-image 0.5s ease-in-out;
+	-moz-transition: background-image 0.5s ease-in-out;
+
+	background-image: url(https://raw.githubusercontent.com/shikshantar/artexposition2020/master/staticAssets/banner/4.jpg);
+
+	background-repeat: no-repeat;
+  background-position: right top;
+  background-attachment: fixed;
+  background-size:cover;
+}
+
+.picture-overlay {
+	color: #fff;
+	font-size: 5vh;
+	backdrop-filter:blur(8px);
+	background-color:rgba(0,0,0,0.8);
+	text-align: center;
+	border-style: solid;
+	border-color: #fff;
+}
+
+.write-up {
+	margin: 0 !important;
+	width:100vw !important;
+	display: flex;
+
+	flex-direction: column;
+}
+
+.write-up *  {
+	padding: 1.5rem;
+	padding-top: 4rem;
+	flex-grow: 1;
+}
+
+.essay {
+	background-color: #fff;
+	color: #000;
+}
+
+.essay * {
+	padding: 1.5rem;
+}
+
+
+@media only screen and (min-width: 800px) {
+	.write-up {
+		flex-direction: row;
+	}
+	
+}

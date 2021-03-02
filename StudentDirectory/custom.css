@@ -1,0 +1,217 @@
+
+* {
+	transition: 250ms all;
+}
+
+h1 {
+	font-size: 4.6rem !important;
+}
+
+h3 {
+	font-size: 2.8rem !important;
+}
+
+
+.my-flex {
+	display: flex;
+	flex-direction: row !important;
+	justify-content: space-between;
+
+}
+
+.intro {
+	padding-right: 0rem
+}
+
+.my-flex {
+	display: flex;
+	flex-direction: column !important;
+}
+
+.tab-button {
+	margin: auto;
+	text-align: center;
+	padding: 1rem !important;
+	margin: auto !important;
+	color: #fff;
+	margin: 1rem !important;
+	color: #0066ff;
+
+}
+
+.image-column {
+	display : flex;
+	flex-direction: column;
+
+}
+
+.image-row {
+	display: flex;
+	flex-grow: 1;
+	flex-direction:column;
+}
+
+.image {
+	margin: 1rem;
+}
+
+.tab-button {
+	text-align: center;
+	margin: auto !important;
+	color: #0066ff;
+	margin: 0.15rem !important;
+	padding: 0.5rem 0 !important;
+	flex-grow: 4;
+	cursor: pointer !important;
+}
+
+.tab-button:hover {
+	text-decoration: underline;
+	text-decoration-color: #0066ff;
+}
+
+.active-tab {
+	color: #ffffff;
+	background-image: url("https://raw.githubusercontent.com/shikshantar/artexposition2020/master/staticAssets/flag_indicator.png");
+	background-repeat: no-repeat;
+  background-size: 11rem;
+	background-position: center;
+}
+
+.active-tab:hover {
+	text-decoration: underline;
+	text-decoration-color: #ffffff;
+}
+
+hr .solid {
+	border-top: 0.5rem solid #303030 !important;
+}
+
+.participant-holder {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+}
+
+.participant-button {
+
+	/*width: calc(50% - 2rem);*/
+	width: 50%;
+	padding: 1rem 0.5rem;
+	margin: 0.3rem 1rem 0.3rem 0;
+	border-style: solid;
+	border-color: #303030;
+}
+
+.participant-button:hover {
+	width: 100%;
+	cursor: pointer;
+	background-color: #000;
+	border-color: #000;
+	color: #fff;
+}
+
+.participant-name {
+	word-wrap: normal;
+	margin: 0 1.7% 0 3.33%;
+}
+
+.container {
+	display: flex;
+}
+
+.column {
+	width: 50%;
+}
+
+#preview {
+	margin-top: 1rem;
+	display: flex;
+	flex-direction: row;
+	max-width: 100%;
+}
+
+#preview * {
+	margin: 4%;
+	max-width: 25%;
+	filter: blur(4px);
+}
+
+#preview *:hover {
+	filter: none;
+	transform : scale(1.1);
+}
+
+#showcase-btn {
+	background-color: #0066ff;
+	padding: 0.5rem;
+}
+
+#showcase-btn:hover {
+	background-color: #00aaff;
+}
+
+.view-more {
+	display: block;
+	width: 100%;
+	color: #0066ff;
+	padding: 0.5rem;
+}
+
+.view-more:hover {
+	cursor: pointer;
+	text-decoration: underline;
+	text-decoration-color: #0066ff;
+}
+
+#tab-holder {
+	top: 10rem
+}
+
+
+.intro-flex {
+	display: flex;
+	flex-flow: column wrap;
+	margin-right: 2rem;
+}
+
+.intro-flex * img {
+	padding: 0.75rem;
+}
+
+
+@media only screen and (min-width: 600px) {
+  /* For desktop: */
+
+  .image-column {
+	flex-direction: row;
+
+  }
+
+  #tab-holder {
+		top: 7rem !important;
+	}
+
+	.intro-flex {
+		flex-direction: row;
+	}
+
+	.intro-flex * img {
+		max-width: 30vw;
+		margin: 5vw;
+		margin-right: 10vw;
+	}
+
+	.intro-flex div {
+		max-width: 40vw;
+	}
+
+	.intro-flex img {
+		margin: 4vw;
+	}
+
+	.intro-flex .intro-flex {
+		max-width: 100% !important;
+	}
+
+}
