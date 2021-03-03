@@ -1,8 +1,10 @@
 var participants
+var current_grade_data 
 
 var active_tab = document.getElementById("tab-holder").children[0];
 
 var API_PATH = "https://raw.githubusercontent.com/shikshantar/artexposition2020/master/api/"
+
 
 fetchFromAPI = async (path,func) => {
 	await fetch(API_PATH+path).
@@ -10,8 +12,10 @@ fetchFromAPI = async (path,func) => {
 	then (obj => func(obj))
 }
 
-getSortedParticipants = async rade => {
+getSortedParticipants = async grade => {
 	elegibleParticipants = participants[grade]
+
+	await updateCurrentGradeData(grade)
 
 	keys = Object.keys(elegibleParticipants)
 	var sortedParticipants = []
@@ -25,21 +29,12 @@ getSortedParticipants = async rade => {
 			var participant = {
 				"group" : group,
 				"name" : participant,
-				"artwork" : []
+				"artwork" : [],
+				"grade" : grade
 			}
 
-			var request;
-			if(window.XMLHttpRequest)
-				request = new XMLHttpRequest();
-			else
-				request = new ActiveXObject("Microsoft.XMLHTTP");
-			request.open('GET',API_PATH+"./pictures/"+participant.name+"_"+participant.group+"/inode.json", false);
-			request.send(); // there will be a 'pause' here until the response to come.
-			// the object request will be actually modified
-			if (request.status !== 404)
-				sortedParticipants.push(participant)
-			else
-				console.log(participant.name+" does not exist")
+			sortedParticipants.push(participant)
+
 		}
 		/*
 		old code fpr shuffling, never know when it might be used
@@ -75,10 +70,9 @@ generateShowcase = async (participants, tag) => {
 
 		for (participant of participant_row) {
 			console.log(participant)
-			image_link = await getImage(participant)
-			if (image_link == null) {
-				continue
-			}
+			image_link = API_PATH + current_grade_data[participant.name] + "/original.jpg"
+			console.log("NEW:"+image_link)
+
 			console.log("recv :"+image_link)
 			HTML += `<div class="image">
 			<img src="${image_link}">
@@ -106,28 +100,23 @@ generateShowcase = async (participants, tag) => {
 
 }
 
-getImage = async participant => {
-	name = `${participant.name}_${participant.group}`
-	var path = "./pictures/"+name+"/inode.json"
-	console.log(path)
-	try {
-		await fetch(API_PATH+path).
-		then (str => str.json()).
-		then (obj => paths = obj)
-		var path = ""
-		for (possiblePath of paths) {
-			if (possiblePath.toUpperCase().includes("ICON")) {
-				path = possiblePath
-			}
-		}
+updateCurrentGradeData = async grade => {
+	path = "inode_"+convertGrade(grade)
 
-		if (path == "") {
-			path = paths[0]
-		}
-		return API_PATH+`pictures/${name}/${path}/thumbnail.jpg`
-	} catch (e){
-		console.log(e)
-		return null
+	await fetch(API_PATH+path).
+	then (str => str.json()).
+	then (obj => current_grade_data = obj)
+}
+
+convertGrade = grade => {
+	if (grade == "IX") {
+		return 9
+	} else if (grade == "X") {
+		return 10
+	} else if (grade == "XI") {
+		return 11;
+	} else {
+		return 12
 	}
 }
 
@@ -207,6 +196,7 @@ getAndDisplayOpeningDialogue = child => {
 }
 
 (async function() {
+	console.log("helo")
 	var tabs = document.getElementById('tab-holder');
 	var children = Array.prototype.slice.call(tabs.children);
 	console.log(children)
@@ -239,3 +229,5 @@ getAndDisplayOpeningDialogue = child => {
 
 
 })();
+
+console.log("js active")
