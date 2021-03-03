@@ -4,6 +4,8 @@ import json
 def main ():
     data = [{},{},{},{}]
     directories = os.listdir("./pictures/")
+    print(directories)
+
 
     for directory in directories:
         group = directory.split("_")[-1]
@@ -12,20 +14,21 @@ def main ():
         grade = get_grade(group) - 9
         path = "./pictures/"+directory+"/inode.json"
 
-        images = json.loads(path)
+        images = json.load(open(path,"r"))
         icon = get_icon(images)
 
-        data[grade][name] = "./pictures/"+directory+"/"+icon
+        data[grade][name] = "/pictures/"+directory+"/"+icon
+
 
     
     write_data(data)
 
 def get_grade (group) :
-    return int(json.loads("./groupmapper.json")[group.upper()])
+    return int(json.load(open("./groupmapper.json","r"))[group.upper()])
 
 def get_icon (images) :
     for image in images :
-        if image.upper().contains("ICON") :
+        if "ICON" in image.upper() :
             return image
 
     return images[0]
@@ -40,3 +43,4 @@ def write_data (data) :
     with open("inode_12","w+") as f:
         json.dump(data[3],f)
 
+main()
